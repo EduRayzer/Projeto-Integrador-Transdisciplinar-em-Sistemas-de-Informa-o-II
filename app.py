@@ -20,7 +20,13 @@ def serve_frontend():
 def serve_static_files(path):
     return send_from_directory('frontend', path)
 
+# if __name__ == '__main__':
+#     from models import User, Product
+#     db.create_all()
+#     app.run(debug=True)
+
 if __name__ == '__main__':
     from models import User, Product
-    db.create_all()
+    with app.app_context():  # Cria o contexto da aplicação
+        db.create_all()  # Inicializa o banco de dados
     app.run(debug=True)
